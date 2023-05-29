@@ -1,0 +1,24 @@
+# Retrieve Grafana Agent binary
+FROM balenalib/%%BALENA_ARCH%%-ubuntu:run as builder
+
+# Must use v0.32 for armv7 and armv6 (32-bit) support.
+# See https://github.com/grafana/agent/pull/3490
+WORKDIR /usr/app
+
+# Translates balena arch to Grafana filename so we can use a single template
+COPY startup/echo-archfile.sh /usr/app
+
+RUN install_packages unzip
+RUN curl -LO "https://github.com/grafana/agent/releases/download/v0.32.1/`./echo-archfile.sh %%BALENA_ARCH%%`.zip"
+RUN unzip "`./echo-archfile.sh %%BALENA_ARCH%%`.zip"
+RUN mv "`./echo-archfile.sh %%BALENA_ARCH%%`" grafana-agent
+
+
+# Run agent binary from builder
+FROM balenalib/%%BALENA_ARCH%%-ubuntu:run
+WORKDIR /usr/app
+
+COPY --from=builder /usr/app/grafana-agent grafana-agent
+COPY startup/agent.yaml /usr/app/
+
+ENTRYPOINT ["/usr/app/grafana-agent", "--config.file", "agent.yaml", "--config.expand-env"]

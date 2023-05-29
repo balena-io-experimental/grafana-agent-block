@@ -1,0 +1,22 @@
+integrations:
+  node_exporter:
+    enabled: true
+    relabel_configs:
+    - replacement: ${HOSTNAME}
+      target_label: instance
+  prometheus_remote_write:
+  - basic_auth:
+      password: ${PROMETHEUS_PASSWORD}
+      username: ${PROMETHEUS_USER}
+    url: ${PROMETHEUS_URL}
+metrics:
+  configs:
+  - name: integrations
+    remote_write:
+    - basic_auth:
+        password: ${PROMETHEUS_PASSWORD}
+        username: ${PROMETHEUS_USER}
+      url: ${PROMETHEUS_URL}
+  global:
+    scrape_interval: 60s
+  wal_directory: /tmp/grafana-agent-wal

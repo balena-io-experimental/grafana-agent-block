@@ -1,0 +1,33 @@
+name: grafana-agent
+type: sw.block
+description: >-
+  Grafana agent for device monitoring
+post-provisioning: >-
+  Grafana's [Agent](https://grafana.com/docs/agent/latest/) for device monitoring.
+
+  ## Getting Started
+
+  1. Create an account at [Grafana](https://grafana.com)
+
+  2. Create a 'grafana-agent' service entry in your docker-compose, like [this example](https://github.com/balena-io-experimental/grafana-agent-block/blob/master/docs/example)
+
+  3. Set the values for the Prometheus username, password, and remote write URL environment variables for your fleet. See the [README](https://github.com/balena-io-experimental/grafana-agent-block#readme) for details.
+assets:
+  repository:
+    type: blob.asset
+    data:
+      url: 'https://github.com/balena-io-experimental/grafana-agent-block'
+  logo:
+    type: blob.asset
+    data:
+      url: >-
+        https://raw.githubusercontent.com/balena-io-experimental/grafana-agent-block/master/logo.png
+data:
+  defaultDeviceType: raspberrypi4-64
+  supportedDeviceTypes:
+    - raspberrypi4-64
+    - fincm3
+    - raspberrypi3
+    - genericx86-64-ext
+    - intel-nuc
+version: 0.0.1
