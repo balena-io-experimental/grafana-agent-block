@@ -7,7 +7,7 @@ post-provisioning: >-
 
   ## Getting Started
 
-  1. Create an account at [Grafana](https://grafana.com)
+  1. Create an account at [Grafana Cloud](https://grafana.com/products/cloud/)
 
   2. Create a 'grafana-agent' service entry in your docker-compose, like [this example](https://github.com/balena-io-experimental/grafana-agent-block/blob/master/docs/example)
 
