@@ -13,6 +13,7 @@ post-provisioning: >-
 
   3. Create a 'grafana-agent' service entry in your docker-compose, like [this example](https://github.com/balena-io-experimental/grafana-agent-block/blob/master/docs/example)
 
+
   See the project [README](https://github.com/balena-io-experimental/grafana-agent-block#readme) for specifics.
 assets:
   repository:
@@ -32,4 +33,4 @@ data:
     - raspberrypi3
     - genericx86-64-ext
     - intel-nuc
-version: 0.1.2
+version: 0.1.3
