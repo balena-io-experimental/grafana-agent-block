@@ -7,11 +7,13 @@ post-provisioning: >-
 
   ## Getting Started
 
-  1. Create an account at [Grafana Cloud](https://grafana.com/products/cloud/)
+  1. Create an account at [Grafana Cloud](https://grafana.com/products/cloud/), and set up a Linux Server integration.
 
-  2. Create a 'grafana-agent' service entry in your docker-compose, like [this example](https://github.com/balena-io-experimental/grafana-agent-block/blob/master/docs/example)
+  2. Create a fleet, and set variables for the Prometheus remote write URL, username, and password used by the integration.
 
-  3. Set the values for the Prometheus username, password, and remote write URL environment variables for your fleet. See the [README](https://github.com/balena-io-experimental/grafana-agent-block#readme) for details.
+  3. Create a 'grafana-agent' service entry in your docker-compose, like [this example](https://github.com/balena-io-experimental/grafana-agent-block/blob/master/docs/example)
+
+  See the project [README](https://github.com/balena-io-experimental/grafana-agent-block#readme) for specifics.
 assets:
   repository:
     type: blob.asset
@@ -30,4 +32,4 @@ data:
     - raspberrypi3
     - genericx86-64-ext
     - intel-nuc
-version: 0.0.1
+version: 0.1.0

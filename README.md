@@ -1,11 +1,22 @@
 Grafana's [Agent](https://grafana.com/docs/agent/latest/) for device monitoring, packaged as a [balenaBlock](https://docs.balena.io/learn/develop/blocks/).
 
 ## Getting Started
+There are two parts to getting started: setting up the server integration at Grafana Cloud, and configuring the agent for your fleet.
 
-1. Create a free account at [Grafana Cloud](https://grafana.com/products/cloud/)
-1. Create a 'grafana-agent' service entry in your docker-compose, like [this example](https://github.com/balena-io-experimental/grafana-agent-block/blob/master/docs/example)
-1. Set the values for the Prometheus username, password, and remote write URL environment [variables](https://docs.balena.io/learn/manage/variables/) for your fleet.
+First, create a free account at [Grafana Cloud](https://grafana.com/products/cloud/). Note the *team* name is used in the URL for your Grafana account, like `https://grafana.com/orgs/{team}`, and in the URL for your cloud dashboards, like `https://{team}.grafana.net` .
 
-See your fleet overview dashboard like below.
+After registering, install the Linux Server integration ([instructions](https://grafana.com/docs/grafana-cloud/data-configuration/get-started-integration/)) for your cloud, which will create pre-configured dashboards. On the setup page, *don't* install the agent. Instead, at the bottom of the page, select *Install* in the section *Install Dashboards and Alerts* ([screenshot](docs/install-linux-integration.png)). Then you can view your dashboards although they are not receiving data yet.
+
+Next, create a fleet for your devices in the balenaCloud dashboard. Set fleet [variables](https://docs.balena.io/learn/manage/variables/) for the Prometheus username, password, and remote write URL environment variables using the values from your Grafana Cloud Prometheus service page ([screenshot](docs/prometheus-config.png)). The service page is available from your Grafana account site (`grafana.com/orgs/{team}`), not the cloud dashboard.
+
+| Variable | Prometheus service page reference |
+| -------- | --------------------------------- |
+| PROMETHEUS_URL | Remote Write Endpoint |
+| PROMETHEUS_USER | Username / Instance ID |
+| PROMETHEUS_PASSWORD | An API key you must create |
+
+Finally, create a *grafana-agent* service entry in your docker-compose, like [this example](https://github.com/balena-io-experimental/grafana-agent-block/blob/master/docs/example), and push that service composition to your fleet.
+
+With this setup in place, you should see devices in your fleet also appear in the Grafana Cloud fleet overview dashboard, like below.
 
 ![Example overview](docs/fleet-overview.png)
