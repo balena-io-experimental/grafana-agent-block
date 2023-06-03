@@ -1,4 +1,4 @@
-Grafana's [Agent](https://grafana.com/docs/agent/latest/) for device monitoring, packaged as a [balenaBlock](https://docs.balena.io/learn/develop/blocks/).
+Grafana's [Agent](https://grafana.com/docs/agent/latest/) for device monitoring, packaged as a [balenaBlock](https://docs.balena.io/learn/develop/blocks/#using-your-block-in-other-projects) per architecture ([aarch64](https://hub.balena.io/blocks/2059722/grafana-agent-aarch64), [amd64](https://hub.balena.io/blocks/2059725/grafana-agent-amd64), [armv7hf](https://hub.balena.io/blocks/2059724/grafana-agent-armv7hf)).
 
 ## Getting Started
 There are two parts to getting started: setting up the server integration at Grafana Cloud, and configuring the agent for your fleet.
@@ -15,7 +15,7 @@ Next, create a fleet for your devices in the balenaCloud dashboard. Set fleet [v
 | PROMETHEUS_USER | Username / Instance ID |
 | PROMETHEUS_PASSWORD | An API key you must create |
 
-Finally, create a *grafana-agent* service entry in your docker-compose, like [this example](https://github.com/balena-io-experimental/grafana-agent-block/blob/master/docs/example), and [push](https://docs.balena.io/learn/deploy/deployment/#balena-push) that service composition to your fleet.
+Finally, create a *grafana-agent* service entry in your docker-compose that references the block, like [this example](https://github.com/balena-io-experimental/grafana-agent-block/blob/master/docs/example), and [push](https://docs.balena.io/learn/deploy/deployment/#balena-push) that service composition to your fleet.
 
 With this setup in place, you should see devices in your fleet also appear in the Grafana Cloud fleet overview dashboard, like below.
 
